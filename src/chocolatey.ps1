@@ -3,6 +3,7 @@
   [string]$command,
   [string]$source='',
   [string]$version='',
+  [string]$bumpBuild='',
   [alias("all")][switch] $allVersions = $false,
   [alias("ia","installArgs")][string] $installArguments = '',
   [alias("o","override","overrideArguments","notSilent")]
@@ -151,7 +152,7 @@ foreach ($packageName in $packageNames) {
       "cygwin"          {Invoke-ChocolateyFunction "Chocolatey-Cygwin" @($packageName,$installArguments)}
       "python"          {Invoke-ChocolateyFunction "Chocolatey-Python" @($packageName,$version,$installArguments)}
       "gem"             {Invoke-ChocolateyFunction "Chocolatey-RubyGem" @($packageName,$version,$installArguments)}
-      "pack"            {Invoke-ChocolateyFunction "Chocolatey-Pack" @($packageName)}
+      "pack"            {Invoke-ChocolateyFunction "Chocolatey-Pack" @($packageName,$bumpBuild)}
       "push"            {Invoke-ChocolateyFunction "Chocolatey-Push" @($packageName,$source)}
       "help"            {Invoke-ChocolateyFunction "Chocolatey-Help"}
       "sources"         {Invoke-ChocolateyFunction "Chocolatey-Sources" @($packageName,$name,$source)}
